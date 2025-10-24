@@ -3,11 +3,15 @@ import pandas as pd
 from components.filters import show_filters
 from components.charts import show_charts
 from components.kpi_cards import show_kpi_cards
+from pathlib import Path
 
 st.set_page_config(page_title="Dashboard Penjualan", page_icon="📈", layout="wide")
 
 # ====== HEADER ======
-st.image("../../assets/logo.png", width=120)
+# Dapatkan path absolut ke file logo
+logo_path = Path(__file__).resolve().parents[2] / "assets" / "profile.jpg"
+st.image(str(logo_path), width=120)
+
 st.title("📊 Dashboard Penjualan Interaktif")
 st.markdown("""
 Selamat datang di dashboard analisis penjualan.  
