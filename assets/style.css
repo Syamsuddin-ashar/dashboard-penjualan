@@ -1,0 +1,19 @@
+/* Styling sederhana untuk dashboard */
+body {
+    background-color: #f9fafc;
+}
+
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+.metric-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}

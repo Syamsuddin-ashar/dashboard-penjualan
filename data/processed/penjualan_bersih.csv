@@ -1,0 +1,13 @@
+tanggal,produk,kategori,jumlah,harga_total,pendapatan
+2025-10-01,Susu Anak,Minuman,12,48000,576000
+2025-10-01,Biskuit Anak,Makanan,8,64000,512000
+2025-10-02,Popok Bayi,Kebutuhan Bayi,5,125000,625000
+2025-10-02,Mainan Edukasi,Mainan,3,90000,270000
+2025-10-03,Susu Anak,Minuman,10,40000,400000
+2025-10-04,Biskuit Anak,Makanan,6,48000,288000
+2025-10-04,Mainan Edukasi,Mainan,2,60000,120000
+2025-10-05,Popok Bayi,Kebutuhan Bayi,4,100000,400000
+2025-10-06,Susu Anak,Minuman,15,60000,900000
+2025-10-06,Biskuit Anak,Makanan,10,80000,800000
+2025-10-07,Mainan Edukasi,Mainan,5,150000,750000
+2025-10-07,Popok Bayi,Kebutuhan Bayi,6,150000,900000
