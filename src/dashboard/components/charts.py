@@ -1,20 +1,31 @@
-import plotly.express as px
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
-def show_charts(df: pd.DataFrame):
+def show_charts(df):
+    if df.empty:
+        st.info("Belum ada data untuk ditampilkan di grafik.")
+        return
+
+    # Grafik penjualan per hari
     st.subheader("📈 Tren Penjualan Harian")
-    daily_sales = df.groupby('tanggal')['pendapatan'].sum().reset_index()
-    fig = px.line(daily_sales, x='tanggal', y='pendapatan', markers=True, title="Total Penjualan per Hari")
-    st.plotly_chart(fig, use_container_width=True)
+    daily_sales = df.groupby("tanggal")["total_penjualan"].sum().reset_index()
 
-    st.subheader("🏆 Top Produk")
-    top_products = df.groupby('produk')['pendapatan'].sum().reset_index().sort_values(by='pendapatan', ascending=False).head(10)
-    fig2 = px.bar(top_products, x='pendapatan', y='produk', orientation='h', title="10 Produk Terlaris", text='pendapatan')
-    fig2.update_traces(texttemplate='%{text:.0f}', textposition='outside')
-    st.plotly_chart(fig2, use_container_width=True)
+    fig, ax = plt.subplots()
+    ax.plot(daily_sales["tanggal"], daily_sales["total_penjualan"], marker="o")
+    ax.set_xlabel("Tanggal")
+    ax.set_ylabel("Total Penjualan (Rp)")
+    ax.grid(True)
+    st.pyplot(fig)
 
-    st.subheader("🍰 Pendapatan per Kategori")
-    category_income = df.groupby('kategori')['pendapatan'].sum().reset_index()
-    fig3 = px.pie(category_income, values='pendapatan', names='kategori', title="Distribusi Pendapatan per Kategori")
-    st.plotly_chart(fig3, use_container_width=True)
+    # Grafik penjualan per kategori
+    if "kategori" in df.columns:
+        st.subheader("📊 Penjualan Berdasarkan Kategori")
+        category_sales = df.groupby("kategori")["total_penjualan"].sum().sort_values(ascending=False)
+
+        fig2, ax2 = plt.subplots()
+        ax2.bar(category_sales.index, category_sales.values)
+        ax2.set_xlabel("Kategori Produk")
+        ax2.set_ylabel("Total Penjualan (Rp)")
+        ax2.set_xticklabels(category_sales.index, rotation=45, ha="right")
+        st.pyplot(fig2)
